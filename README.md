@@ -50,7 +50,7 @@ Execute the `teardown.sh` script.
 ./teardown.sh
 ```
 ## Built With
-* [Hello Minkiube](https://kubernetes.io/docs/tutorials/hello-minikube/) - Hello Minikube by Kubernetes
+* [Kubernetes](https://kubernetes.io/docs/tutorials/hello-minikube/) - Hello Minikube by Kubernetes
 
 ## Authors
 
