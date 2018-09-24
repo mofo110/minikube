@@ -1,7 +1,7 @@
 const http = require('http')
 const MongoClient = require('mongodb').MongoClient
-const mongoHost = process.env.MONGO_DB_HOST ? process.env.MONGO_DB_HOST : 'localhost'
-const mongoPort = process.env.MONGO_DB_PORT ? process.env.MONGO_DB_PORT : '27017'
+const mongoHost = process.env.MONGO_DB_HOST || 'localhost'
+const mongoPort = process.env.MONGO_DB_PORT || '27017'
 
 console.log(`Active: Blue`)
 
