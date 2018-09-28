@@ -1,2 +1,2 @@
 #!/bin/bash
-mongoimport -d test -c customers --type csv --file data.csv --headerline 
+mongoimport --db test --collection customers --file customers.json --type json --jsonArray
