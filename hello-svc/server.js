@@ -1,33 +1,27 @@
-const http = require('http')
-const MongoClient = require('mongodb').MongoClient
-const mongoHost = process.env.MONGO_DB_HOST || 'localhost'
-const mongoPort = process.env.MONGO_DB_PORT || '27017'
+
+const express = require("express")
+const app = express()
+
+const customersDao = require('./customersDao')
 
 console.log(`Active: Blue`)
 
-const mongoUri = `mongodb://${mongoHost}:${mongoPort}`
-console.log(`We are connecting to: ${mongoUri}`)
+app.get("/customers/:id?", (req, res) => {
+  if (req.params.id) {
+    const id = parseInt(req.params.id)
+    customersDao.findOne(id, function (customer) {
+      res.send(customer)
+    })
+  }
+  else {
+    customersDao.find(function (customers) {
+      res.send(customers)
+    })    
+  }
+})
 
-const handleRequest = function(request, response) {
-  console.log('Received request for URL: ' + request.url)
-  
-  MongoClient.connect(mongoUri, function (err, client) {
-    if(!err) {
-      const db = client.db('test')
-      const id = parseInt(request.url.replace('/customers/', ''))
-      console.log(`id: ${id}`)
-      db.collection('customers').findOne({_id:id}, function (findErr, result) {
-        if (findErr) throw findErr;
-        console.log(`Result: ${result}`)
-        response.writeHead(200)
-        const greeting = `Hello ${result.first_name} ${result.last_name}!`
-        console.log(greeting)
-        response.end(greeting)      
-        client.close()
-      })
-    }
-  })
-}
+const port = process.env.PORT || 8080
 
-var www = http.createServer(handleRequest)
-www.listen(8080)
+let server = app.listen(port, () => {
+  console.log(`server listening on ${port}`)
+})
