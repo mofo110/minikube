@@ -1,6 +1,5 @@
 # Hello Minikube
-
-This is my sample for minikube.
+> This is my sample for minikube.
 
 ## Getting Started
 

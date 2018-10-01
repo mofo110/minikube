@@ -2,11 +2,11 @@
 # Initialize Docker environment
 eval $(minikube docker-env)
 
-# Delete services
+# Delete hello-svc
 kubectl delete service hello-svc
 kubectl delete deployment hello-svc
 
-# Delete deployments
+# Delete mongo-db
 kubectl delete service mongo-db
 kubectl delete deployment mongo-db
 
